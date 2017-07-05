@@ -21,30 +21,30 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    public void onCreate(SQLiteDatabase db) {
         String CREATE_HABIT_ENHANCED_LOG_TABLE = "CREATE TABLE " + HabitsEnhancedEntry.TABLE_NAME + " ("
                 + HabitsEnhancedEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + HabitsEnhancedEntry.COLUMN_HABIT_NAME + " TEXT NOT NULL, "
                 + HabitsEnhancedEntry.COLUMN_HABIT_DESCRIPTION + " TEXT, "
                 + HabitsEnhancedEntry.COLUMN_HABIT_MINUTE_DURATION + " INTEGER NOT NULL DEFAULT 0);";
         Log.i(LOG_TAG, CREATE_HABIT_ENHANCED_LOG_TABLE);
-        database.execSQL(CREATE_HABIT_ENHANCED_LOG_TABLE);
+        db.execSQL(CREATE_HABIT_ENHANCED_LOG_TABLE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
     public void insertEnhancedHabit(String name, String description, int duration) {
-        SQLiteDatabase database = getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues habitValues = new ContentValues();
         habitValues.put(HabitsEnhancedEntry.COLUMN_HABIT_NAME, name);
         habitValues.put(HabitsEnhancedEntry.COLUMN_HABIT_DESCRIPTION, description);
         habitValues.put(HabitsEnhancedEntry.COLUMN_HABIT_MINUTE_DURATION, duration);
-        database.insert(HabitsEnhancedEntry.TABLE_NAME, null, habitValues);
+        db.insert(HabitsEnhancedEntry.TABLE_NAME, null, habitValues);
     }
 
-    public Cursor readEnhancedHabit() {
-        SQLiteDatabase database = getReadableDatabase();
+    public Cursor queryAllHabits() {
+        SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
             HabitsEnhancedEntry._ID,
             HabitsEnhancedEntry.COLUMN_HABIT_NAME,
@@ -52,7 +52,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
             HabitsEnhancedEntry.COLUMN_HABIT_MINUTE_DURATION
         };
 
-        return database.query(
+        return db.query(
             HabitsEnhancedEntry.TABLE_NAME,
             projection,
             null,
