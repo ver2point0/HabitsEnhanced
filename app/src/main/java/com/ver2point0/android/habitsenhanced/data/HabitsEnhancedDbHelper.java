@@ -34,7 +34,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
-    public void insertEnhancedHabit(String name, String description, int duration) {
+    public void insertHabit(String name, String description, int duration) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues habitValues = new ContentValues();
         habitValues.put(HabitsEnhancedEntry.COLUMN_HABIT_NAME, name);

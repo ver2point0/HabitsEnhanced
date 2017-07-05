@@ -20,27 +20,27 @@ public class MainActivity extends AppCompatActivity {
 
         HabitsEnhancedDbHelper mDbHelper = new HabitsEnhancedDbHelper(this);
 
-        mDbHelper.insertEnhancedHabit(
+        mDbHelper.insertHabit(
                 "Writing",
                 "Let the words flow to express your thoughts",
                 HabitsEnhancedEntry.HABIT_MINUTE_DURATION_S);
 
-        mDbHelper.insertEnhancedHabit(
+        mDbHelper.insertHabit(
                 "Reading",
                 "Revise and edit what you wrote",
                 HabitsEnhancedEntry.HABIT_MINUTE_DURATION_M);
 
-        mDbHelper.insertEnhancedHabit(
+        mDbHelper.insertHabit(
                 "Walking",
                 "Have to get that exercise",
                 HabitsEnhancedEntry.HABIT_MINUTE_DURATION_L);
 
-        mDbHelper.insertEnhancedHabit(
+        mDbHelper.insertHabit(
                 "Bathing",
                 "Exercising makes you stinky",
                 HabitsEnhancedEntry.HABIT_MINUTE_DURATION_XL);
 
-        Cursor readCursor = mDbHelper.readEnhancedHabit();
+        Cursor readCursor = mDbHelper.queryAllHabits();
 
         try {
             while (readCursor.moveToNext()) {
