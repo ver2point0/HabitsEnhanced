@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             while (readCursor.moveToNext()) {
                 Log.i(LOG_TAG,
-                    "Enhanced habit: " + readCursor.getString(0) + " - "
+                    "Enhanced habit: " + readCursor.getInt(0) + " - "
                         + readCursor.getString(1) + " - "
-                        + readCursor.getInt(2));
+                        + readCursor.getString(2) + " - "
+                        + readCursor.getInt(3));
             }
         } finally {
             readCursor.close();
