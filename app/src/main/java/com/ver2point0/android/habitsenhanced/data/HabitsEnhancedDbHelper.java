@@ -11,7 +11,7 @@ import com.ver2point0.android.habitsenhanced.data.HabitsEnhancedContract.HabitsE
 
 public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = HabitsEnhancedDbHelper.class.getSimpleName();
+    private static final String LOG_TAG = HabitsEnhancedDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "habit_enhanced_log.db";
     private static final int DATABASE_VERSION = 1;
@@ -34,7 +34,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
 
-    private void insertEnhancedHabit(String name, String description, int duration) {
+    public void insertEnhancedHabit(String name, String description, int duration) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues habitValues = new ContentValues();
         habitValues.put(HabitsEnhancedEntry.COLUMN_HABIT_NAME, name);
@@ -43,7 +43,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
         database.insert(HabitsEnhancedEntry.TABLE_NAME, null, habitValues);
     }
 
-    private Cursor readEnhancedHabit() {
+    public Cursor readEnhancedHabit() {
         SQLiteDatabase database = getReadableDatabase();
         String[] projection = {
             HabitsEnhancedEntry._ID,
@@ -52,7 +52,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
             HabitsEnhancedEntry.COLUMN_HABIT_MINUTE_DURATION
         };
 
-        Cursor cursor = database.query(
+        return database.query(
             HabitsEnhancedEntry.TABLE_NAME,
             projection,
             null,
@@ -60,7 +60,6 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
             null,
             null,
             null);
-        return cursor;
     }
 }
 
