@@ -13,7 +13,7 @@ public class HabitsEnhancedDbHelper extends SQLiteOpenHelper {
 
     private static final String LOG_TAG = HabitsEnhancedDbHelper.class.getSimpleName();
 
-    private static final String DATABASE_NAME = "habit_enhanced_log.db";
+    private static final String DATABASE_NAME = "habit_log.db";
     private static final int DATABASE_VERSION = 1;
 
     public HabitsEnhancedDbHelper(Context context) {
